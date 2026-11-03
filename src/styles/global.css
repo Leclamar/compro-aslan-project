@@ -1,1 +1,53 @@
 @import "tailwindcss";
+
+@theme {
+  /* ===== Warna (nama sama dengan di Figma) ===== */
+  --color-primary: #111111;         /* aksi utama / latar gelap */
+  --color-accent: #d0a34a;          /* sorotan & penekanan */
+  --color-accent-dark: #7b5a1f;     /* link & focus ring di latar terang */
+  --color-background: #f6f0e8;      /* kanvas / latar terang */
+  --color-surface-dark: #1c1c1c;    /* navigasi & kontras */
+  --color-text-primary: #252525;    /* teks isi */
+  --color-text-secondary: #77786c;  /* teks sekunder besar saja */
+  --color-text-light: #faf6ee;      /* teks di permukaan gelap */
+  --color-border-light: #d6d0c5;    /* garis dekoratif terang */
+  --color-border-dark: #343434;     /* garis dekoratif gelap */
+
+  /* ===== Font ===== */
+  --font-display: "Cormorant Garamond", serif;  /* judul */
+  --font-sans: "Manrope", sans-serif;           /* teks isi */
+
+  /* ===== Ukuran teks (clamp = mengecil/membesar otomatis mengikuti layar) ===== */
+  --text-hero: clamp(2.5rem, 5vw, 5rem);
+  --text-hero--line-height: 1.05;
+  --text-section: clamp(2rem, 3.5vw, 3.5rem);
+  --text-section--line-height: 1.1;
+  --text-body: 1rem;
+  --text-body--line-height: 1.55;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.55;
+
+  /* ===== Bentuk & layout ===== */
+  --radius-card: 4px;
+  --container-content: 1280px;
+  --spacing-section: clamp(4rem, 9vw, 7rem);  /* jarak antar section */
+}
+
+/* Gaya dasar seluruh halaman */
+body {
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+}
+
+/* Semua judul memakai font display */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+/* Focus ring 2px sesuai aturan aksesibilitas di Figma */
+:focus-visible {
+  outline: 2px solid var(--color-accent-dark);
+  outline-offset: 2px;
+}
