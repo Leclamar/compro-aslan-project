@@ -1,17 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  /* ===== Warna (nama sama dengan di Figma) ===== */
-  --color-primary: #111111;         /* aksi utama / latar gelap */
-  --color-accent: #d0a34a;          /* sorotan & penekanan */
-  --color-accent-dark: #7b5a1f;     /* link & focus ring di latar terang */
-  --color-background: #f6f0e8;      /* kanvas / latar terang */
-  --color-surface-dark: #1c1c1c;    /* navigasi & kontras */
-  --color-text-primary: #252525;    /* teks isi */
-  --color-text-secondary: #77786c;  /* teks sekunder besar saja */
-  --color-text-light: #faf6ee;      /* teks di permukaan gelap */
-  --color-border-light: #d6d0c5;    /* garis dekoratif terang */
-  --color-border-dark: #343434;     /* garis dekoratif gelap */
+  --color-primary: #111111;         
+  --color-accent: #d0a34a;          
+  --color-accent-dark: #7b5a1f;     
+  --color-background: #111111;      
+  --color-surface-dark: #1c1c1c;   
+  --color-text-primary: #faf6ee;    
+  --color-text-secondary: #77786c; 
+  --color-text-dark: #252525;      
+  --color-border-light: #d6d0c5;    
+  --color-border-dark: #343434;    
 
   /* ===== Font ===== */
   --font-display: "Cormorant Garamond", serif;  /* judul */
@@ -38,6 +37,7 @@ body {
   background: var(--color-background);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
+  padding: 0 180px
 }
 
 /* Semua judul memakai font display */
