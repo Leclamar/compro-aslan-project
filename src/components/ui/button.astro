@@ -1,0 +1,15 @@
+---
+interface Props {
+  variant?: "gold" | "outline";  
+  href: string;
+}
+const { variant = "gold", href } = Astro.props;
+
+const base = "inline-flex items-center justify-center h-8 px-4 rounded-full text-xs font-semibold uppercase tracking-wide transition-colors";
+
+const styles = {
+  gold:    "bg-accent text-primary hover:bg-text-light",
+  outline: "border border-text-light/70 bg-primary/40 text-text-light hover:bg-text-light/10",
+};
+---
+<a href={href} class={`${base} ${styles[variant]}`}><slot /></a>

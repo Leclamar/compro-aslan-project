@@ -1,0 +1,79 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo/logo.png";
+
+const links = [
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Services", href: "#services" },
+  { label: "Projects", href: "#projects" },
+];
+---
+
+<header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-colors duration-300">
+  <nav class="mx-auto max-w-content flex items-center justify-between h-24 px-6 md:px-12">
+    <a href="#home"><Image src={logo} alt="Aslan Project Design & Build" class="h-12 md:h-14 w-auto" /></a>
+
+    <ul class="hidden md:flex gap-6 font-display text-lg uppercase text-text-light">
+      {links.map((l, i) => (
+        <li>
+          <!-- aria-current="true" = menu aktif. Garis emas muncul otomatis lewat aria-[current=true] -->
+          <a
+            href={l.href}
+            data-nav-link
+            aria-current={i === 0 ? "true" : "false"}
+            class="pb-1 border-b border-transparent transition-colors hover:text-accent aria-[current=true]:border-accent"
+          >
+            {l.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <a href="#contact" class="inline-flex items-center justify-center rounded-full bg-accent px-7 py-3 font-sans text-sm font-semibold uppercase tracking-wider text-primary transition-colors hover:bg-accent/80">Contact</a>
+  </nav>
+</header>
+
+<script>
+  const header = document.getElementById("site-header")!;
+  const links = document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]");
+
+  const solid = ["bg-primary/90", "backdrop-blur"];
+  const onScroll = () => {
+    const scrolled = window.scrollY > 40;
+    solid.forEach((c) => header.classList.toggle(c, scrolled));
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  const setActive = (id: string) => {
+    links.forEach((a) =>
+      a.setAttribute("aria-current", String(a.getAttribute("href") === `#${id}`))
+    );
+  };
+
+  const sections = Array.from(links)
+    .map((a) => document.querySelector<HTMLElement>(a.getAttribute("href")!))
+    .filter((el): el is HTMLElement => el !== null);
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) setActive(e.target.id);
+      });
+    },
+    { rootMargin: "-40% 0px -55% 0px" }
+  );
+  sections.forEach((s) => observer.observe(s));
+
+  const atBottom = () =>
+    window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+
+  window.addEventListener(
+    "scroll",
+    () => {
+        if (atBottom() && sections.length) setActive(sections[sections.length - 1].id);
+    },
+    { passive: true }
+    );
+</script>
