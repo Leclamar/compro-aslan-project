@@ -37,6 +37,7 @@ body {
   background: var(--color-background);
   color: var(--color-text-primary);
   font-family: var(--font-sans);
+  /* padding: 0 180px */
 }
 
 /* Semua judul memakai font display */
