@@ -1,33 +1,55 @@
 ---
 import ListContent from './list-content.astro';
+
+const items = [
+    {
+        number: "01",
+        title: "Design Value",
+        desc: "Creativity and character"
+    },
+    {
+        number: "02",
+        title: "Precision",
+        desc: "Planning and execution"
+    },
+    {
+        number: "03",
+        title: "Long-term Value",
+        desc: "Quality that lasts"
+    }
+]
 ---
 
-<section class="py-8 grid grid-cols-[1.5fr_1fr] gap-8 pl-45">
-    <article class="pr-8">
+<section id="about" class="mt-18 min-h-screen py-8 grid grid-cols-[1.5fr_1fr] gap-8 pl-45">
+    <article class="pr-8 h-full flex flex-col">
         <h1 class="text-xl text-accent">About Us</h1>
-        <p class="text-3xl font-display mb-6"><span class="font-extralight">We don’t just build buildings. We build experiences.</span></p>
+        <p class="text-2xl font-extralight mt-1 mb-8">We don’t just build buildings. <span class="font-black">We build experiences.</span></p>
 
         <article>
-            <p class="text-2xl/10 font-bold mb-12">Aslan Project adalah perusahaan Architecture, Interior, & Construction yang mengintegrasikan desain, fungsi, dan kualitas untuk menciptakan ruang bernilai jangka panjang.</p>
+            <p class="text-2xl/10 font-bold mb-8">Aslan Project adalah perusahaan Architecture, Interior, & Construction yang mengintegrasikan desain, fungsi, dan kualitas untuk menciptakan ruang bernilai jangka panjang.</p>
 
-            <div class="grid grid-cols-[1fr_1.5fr] gap-12">
-                <p>Kami memandang setiap proyek sebagai sebuah investasi terhadap kualitas hidup dan masa depan. Karena itu, kami mengintegrasikan kreativitas desain, ketelitian dalam perencanaan, serta kualitas pelaksanaan untuk menghasilkan karya yang memiliki karakter dan relevansi.</p>
+            <div class="grid grid-cols-[1fr_2fr] gap-12">
+                <p class="text-sm">Kami memandang setiap proyek sebagai sebuah investasi terhadap kualitas hidup dan masa depan. Karena itu, kami mengintegrasikan kreativitas desain, ketelitian dalam perencanaan, serta kualitas pelaksanaan untuk menghasilkan karya yang memiliki karakter dan relevansi.</p>
 
                 <div>
-                    <h1 class="text-accent text-2xl mb-4">Our Approach</h1>
+                    <h1 class="text-accent text-2xl mb-3">Our Approach</h1>
                     <p class="mb-8">Dengan pendekatan Design & Build, kami menghadirkan proses yang terintegrasi, efisien, dan terukur—dari gagasan hingga menjadi sebuah ruang yang nyata.</p>
 
                     <div class="grid grid-cols-3 gap-8">
-                        <ListContent/>
-                        <ListContent/>
-                        <ListContent/>
+                        {items.map((item) => (
+                            <ListContent number={item.number} title={item.title} desc={item.desc} />
+                        ))}
                     </div>
                 </div>
             </div>
         </article>
 
+        <div class="rounded-sm place-content-end mt-auto mb-12 bg-white-background px-4 py-2">
+            <p class="text-accent font-black text-sm mb-0.5">OUR COMMITMENT</p>
+            <p class="text-primary">Creating better spaces, delivering greater value.</p>
+        </div>
     </article>
 
-    <div class="bg-red-600 w-full h-screen">
+    <div class="bg-red-600 w-full h-full">
     </div>
 </section>

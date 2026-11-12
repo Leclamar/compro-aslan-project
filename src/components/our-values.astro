@@ -1,0 +1,45 @@
+---
+import ListContent from './list-content.astro';
+
+const items = [
+    {
+        number: "01",
+        title: "INTEGRITY",
+        desc: "Kami bekerja dengan kejujuran, transparansi, dan tanggung jawab."
+    },
+    {
+        number: "02",
+        title: "QUALITY",
+        desc: "Kami percaya kualitas dibangun melalui perhatian terhadap setiap detail."
+    },
+    {
+        number: "03",
+        title: "INNOVATION",
+        desc: "Kami terbuka terhadap teknologi, ide, dan cara baru untuk menghasilkan sesuatu yang lebih baik."
+    }, 
+    {
+        number: "04",
+        title: "COLLABORATION",
+        desc: "Kami percaya karya terbaik lahir dari kolaborasi yang kuat antara klien, desainer, engineer, dan pelaksana."
+    }, 
+    {
+        number: "05",
+        title: "EXCELLENCE",
+        desc: "Kami terus berusaha meningkatkan standar dan memberikan hasil terbaik dalam setiap proyek."
+    }
+]
+---
+
+<section class="min-h-[50vh] px-45">
+    <h1 class="text-center my-12 text-4xl">OUR VALUES</h1>
+
+    <article>
+        <div class="flex flex-wrap justify-center gap-8">
+            {items.map((item) => (
+                <div class="w-[calc((100%-4rem)/3)]">
+                    <ListContent number={item.number} title={item.title} desc={item.desc} align="center" />
+                </div>
+            ))}
+        </div>
+    </article>
+</section>

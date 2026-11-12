@@ -1,0 +1,27 @@
+---
+interface Props {
+    number: string;
+    title: string;
+    desc: string;
+    align?: "left" | "center" | "right";
+}
+
+const {number, title, desc, align = "left"} = Astro.props;
+
+const alignClasses = {
+    left: "text-left",
+    center: "text-center",
+    right: "text-right",
+};
+
+const alignClass = alignClasses[align];
+---
+
+<div class ={alignClass}>
+    <div class="text-accent mb-4 font-bold">{number}</div>
+
+    <div>
+        <p class="font-bold">{title}</p>
+        <p class="text-xs font-extralight text-text-secondary">{desc}</p>
+    </div>
+</div>
