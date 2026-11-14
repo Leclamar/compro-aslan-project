@@ -4,6 +4,7 @@ interface Props {
     title: string;
     desc: string;
     align?: "left" | "center" | "right";
+    icon?: string;
 }
 
 const {number, title, desc, align = "left"} = Astro.props;
@@ -17,7 +18,7 @@ const alignClasses = {
 const alignClass = alignClasses[align];
 ---
 
-<div class ={alignClass}>
+<div class =`${alignClass}`>
     <div class="text-accent mb-4 font-bold">{number}</div>
 
     <div>
