@@ -1,0 +1,60 @@
+---
+import { Image } from "astro:assets";
+import photo from "../assets/about/vision.jpg";
+
+const vision = "Menjadi Perusahaan arsitektur dan konstruksi terpercaya yang menciptakan karya berkualitas, bernilai, dan relevan bagi masa depan.";
+
+const missions = [
+  { number: "01", title: "CREATE",      desc: "Menghadirkan desain yang memiliki karakter, fungsi, dan nilai." },
+  { number: "02", title: "DELIVER",     desc: "Mewujudkan setiap proyek dengan standar kualitas dan profesionalisme tinggi." },
+  { number: "03", title: "INNOVATE",    desc: "Mengembangkan teknologi, proses, dan Solusi untuk meningkatkan kualitas serta efisiensi." },
+  { number: "04", title: "BUILD TRUST", desc: "Membangun hubungan jangka Panjang melalui integritas, transparansi, dan komitmen." },
+];
+---
+
+<section id="vision" class="overflow-hidden px-6 md:px-20 lg:px-45 py-section">
+  <div class="grid items-center gap-16 md:grid-cols-2">
+
+    <div class="relative mx-auto ml-16 w-full max-w-[300px] aspect-[9/15]">
+        <div class="absolute -top-10 -left-16 h-[55%] w-[85%] bg-accent"></div>
+        
+        <div class="absolute -right-14 -bottom-10 h-[45%] w-[75%] bg-accent-dark"></div>
+
+        <Image src={photo} alt="Interior Zamboer Hills Café & Resto" class="relative z-10 size-full object-cover" />
+        
+        <div class="absolute -left-28 top-1/4 -bottom-7 w-24 border-l border-t border-accent/60"></div>
+
+        <p class="absolute -left-26 -bottom-7 translate-y-1/2 flex items-center gap-2 text-[10px] uppercase tracking-wider text-accent">
+        Our Philosophy <span class="h-px w-34 bg-accent/60"></span>
+        </p>
+    </div>
+
+    <div>
+        <p class="flex items-center gap-3 text-xs uppercase tracking-wider text-accent">
+            <span class="h-px w-24 bg-accent/60"></span>
+            About Us
+        </p>
+        
+        <h2 class="mt-4 text-section uppercase">Vision</h2>
+        <p class="mt-4 max-w-md text-sm text-text-primary/80">{vision}</p>
+        
+        <h2 class="mt-12 text-section uppercase">Mission</h2>
+
+        <ul class="mt-6 space-y-8">
+            {missions.map((m) => (
+            <li class="flex gap-4">
+                <!-- angka besar emas; leading-none supaya tidak ada ruang kosong di atasnya -->
+                <span class="font-display text-5xl leading-none text-accent">{m.number}</span>
+
+                <!-- garis vertikal tipis = border-l di sisi kiri teks -->
+                <div class="border-l border-text-secondary/40 pl-4">
+                <h3 class="font-display text-lg uppercase tracking-wide text-accent">{m.title}</h3>
+                <p class="mt-1 max-w-sm text-sm text-text-primary/80">{m.desc}</p>
+                </div>
+            </li>
+            ))}
+        </ul>
+    </div>
+
+  </div>
+</section>
