@@ -1,0 +1,108 @@
+---
+import {Image} from "astro:assets";
+
+import AquaInformationBoothDesign from "../../assets/portfolio/Aqua Information Booth Design.jpg";
+import BillyardClubDesign from "../../assets/portfolio/Billyard Club Design.jpg";
+import MrTeukuHouseDesign from "../../assets/portfolio/Mr. Teuku House Design.png";
+import FestivalEventVenueDesign from "../../assets/portfolio/Festival Event Venue Design.jpg";
+import KALaundryInteriorDesignBuild from "../../assets/portfolio/KA Laundry Interior Design & Build.jpg";
+import KedaiAsikInteriorDesignBuild from "../../assets/portfolio/Kedai Asik Interior Design & Build.jpg";
+import KopikiranCoffeeEateryInteriorDesignBuild from "../../assets/portfolio/Kopikiran Coffee & Eatery Interior Design & Build.png";
+import MasjidAnNaafi from "../../assets/portfolio/Masjid An-Naafi’ Design & Build.jpg";
+import MrErikHouseDesign from "../../assets/portfolio/Mr. Erik House Design.jpg";
+import MrHaikalHouseDesign from "../../assets/portfolio/Mr. Haikal House Design.png";
+import MrNovanHouseDesign from "../../assets/portfolio/Mr. Novan House Design.jpg";
+import MsAsniHouseDesign from "../../assets/portfolio/Ms. Asni House Design & Build.jpg";
+import MsLinaHouseDesign from "../../assets/portfolio/Ms. Lina House Design & Build.jpg";
+import MsYuniHouseDesign from "../../assets/portfolio/Ms. Yuni House Design.jpg";
+import TheBreezeCafeRestoDesign from "../../assets/portfolio/The Breeze Café & Resto Design.jpg";
+import TYATeknikDesign from "../../assets/portfolio/TYA Teknik Design.jpg";
+
+const items =[
+    {
+        img : AquaInformationBoothDesign,
+        title : "Aqua Information Booth Design",
+    },
+    {
+        img : BillyardClubDesign,
+        title : "Billyard Club Design"
+    },
+    {
+        img : MrTeukuHouseDesign,
+        title : "Mr. Teuku House Design"
+    },
+    {
+        img : FestivalEventVenueDesign,
+        title : "Festival Event Venue Design"
+    },
+    {
+        img : KALaundryInteriorDesignBuild,
+        title : "KA Laundry Interior Design & Build"
+    },
+    {
+        img : KedaiAsikInteriorDesignBuild,
+        title : "Kedai Asik Interior Design & Build"
+    },
+    {
+        img : KopikiranCoffeeEateryInteriorDesignBuild,
+        title : "Kopikiran Coffee & Eatery Interior Design & Build"
+    },
+    {
+        img : MasjidAnNaafi,
+        title : "Masjid An-Naafi’ Design & Build"
+    },
+    {
+        img : MrErikHouseDesign,
+        title : "Mr. Erik House Design"
+    },
+    {
+        img : MrHaikalHouseDesign,
+        title : "Mr. Haikal House Design"
+    },
+    {
+        img : MrNovanHouseDesign,
+        title : "Mr. Novan House Design"
+    },
+    {
+        img : MsAsniHouseDesign,
+        title : "Ms. Asni House Design"
+    },
+    {
+        img : MsLinaHouseDesign,
+        title : "Ms. Lina House Design"
+    },
+    {
+        img : MsYuniHouseDesign,
+        title : "Ms. Yuni House Design"
+    },
+    {
+        img : TheBreezeCafeRestoDesign,
+        title : "The Breeze Café & Resto Design"
+    },
+    {
+        img : TYATeknikDesign,
+        title : "TYA Teknik Design"
+    }
+]
+---
+
+<section>
+    <header class="text-center mb-10">
+        <h1 class="text-text-primary text-section font-bold mb-2">
+            Our Portfolio
+        </h1>
+
+        <p class="text-xs">A collection of spaces, ideas, and architectural expressions</p>
+    </header>
+    
+    <main class="px-45 mb-32">
+        <section class="grid grid-cols-2 gap-10">
+            {items.map(({ img, title }) => (
+                <div class="grid grid-rows-[1fr_auto] gap-4">
+                    <Image src={img} alt={title} class="w-full h-full object-cover rounded-lg border-accent border" />
+                    <h2 class="text-text-primary text-lg font-semibold">{title}</h2>
+                </div>
+            ))}
+        </section>
+    </main>
+</section>

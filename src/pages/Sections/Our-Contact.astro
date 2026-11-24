@@ -1,0 +1,57 @@
+---
+import ListContent from "../../components/list-content.astro";
+import InstagramIcon from "../../assets/instagram-icon-svgrepo-com.svg";
+import YouTubeIcon from "../../assets/youtube-168-svgrepo-com.svg";
+import WhatsappIcon from "../../assets/whatsapp-svgrepo-com.svg";
+import LocationPinIcon from "../../assets/location-pin-svgrepo-com.svg";
+
+const items = [
+    {
+        icon: InstagramIcon,
+        title: "Instagram",
+        desc: "@yourhandle"
+    },
+    {
+        icon: YouTubeIcon,
+        title: "YouTube",
+        desc: "YourChannelName"
+    }, 
+    {
+        icon: WhatsappIcon,
+        title: "WhatsApp",
+        desc: "+62 123 456 7890"
+    }, 
+    {
+        icon: LocationPinIcon,
+        title: "Location",
+        desc: "Your City, Your Country"
+    }
+]
+---
+
+<section class="min-h-screen mt-12 px-45 flex justify-between gap-20">
+    <article class="bg-surface-dark h-max p-12 pr-20 pb-20 w-full rounded-2xl">
+        <h1 class="font-bold text-3xl">
+            Contact Us
+        </h1>
+
+        <p class="font-extralight text-sm mt-2 mb-8 text-text-secondary max-w-xl">
+            Punya pertanyaan, ide menarik, atau tertarik untuk bekerja sama? Jangan ragu untuk menghubungi saya! Saya terbuka untuk berbagai peluang kolaborasi, diskusi, maupun pertanyaan lainnya. Silakan hubungi saya melalui kontak yang tersedia di bawah ini.
+        </p>
+
+        <div class="flex flex-col gap-4">
+            {items.map(({ icon: Icon, title, desc }, index) => (
+                <>
+                    <ListContent title={title} desc={desc}>
+                        <Icon slot="icon" class="size-7" />
+                    </ListContent>
+                    {index < items.length - 1 && <hr class="border-border-dark" />}
+                </>
+            ))}
+        </div>
+    </article>
+
+    <div class="text-accent text-8xl w-[26%] wrap-break-word font-display">
+        LET’S WORK TOGETHER
+    </div>
+</section>

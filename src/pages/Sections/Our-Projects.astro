@@ -1,0 +1,103 @@
+---
+import {Image} from "astro:assets";
+
+import KafkaHouse1 from "../../assets/projects/Kafka House 1.jpg";
+import KedaiAsik from "../../assets/projects/Kedai Asiiik.png";
+import KopikiranCoffeeEatery from "../../assets/projects/Kopikiran Coffee & Eatery 1.jpg";
+import MasjidAnNaafi from "../../assets/projects/Masjid An-Naafi’.jpg";
+import MsAsniHouse1 from "../../assets/projects/Ms. Asni House 1.jpg";
+import MsLinaHouse1 from "../../assets/projects/Ms. Lina House 1.png";
+import MsLinaHouse2 from "../../assets/projects/Ms. Lina House 2.jpg";
+import WaroengPintoAtjeh from "../../assets/projects/Waroeng Pinto Atjeh 1.jpg";
+import ZamboerHillsCafeResto1 from "../../assets/projects/Zamboer Hills Café & Resto 1.jpg";
+import ZamboerHillsCafeResto2 from "../../assets/projects/Zamboer Hills Café & Resto 2.jpg";
+import ZamboerHillsCafeResto3 from "../../assets/projects/Zamboer Hills Café & Resto 3.jpg";
+import ZamboerHillsCafeResto4 from "../../assets/projects/Zamboer Hills Café & Resto 4.jpg";
+
+
+const items = [
+    {
+        img: KafkaHouse1,
+        title: "Kafka House 1",
+        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
+    }, 
+    {
+        img: KedaiAsik,
+        title: "Kedai Asik",
+        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
+    }, 
+    {
+        img: KopikiranCoffeeEatery,
+        title: "Kopikiran Coffee & Eatery",
+        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
+    }, 
+    {
+        img: MasjidAnNaafi,
+        title: "Masjid An-Naafi’",
+        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
+    }, 
+    {
+        img: MsAsniHouse1,
+        title: "Ms. Asni House 1",
+        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
+    }, 
+    {
+        img: MsLinaHouse1,
+        title: "Ms. Lina House 1",
+        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
+    }, 
+    {
+        img: MsLinaHouse2,
+        title: "Ms. Lina House 2",
+        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
+    }, 
+    {
+        img: WaroengPintoAtjeh,
+        title: "Waroeng Pinto Atjeh",
+        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
+    }, 
+    {
+        img: ZamboerHillsCafeResto1,
+        title: "Zamboer Hills Café & Resto 1",
+        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
+    }, 
+    {
+        img: ZamboerHillsCafeResto2,
+        title: "Zamboer Hills Café & Resto 2",
+        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
+    }, 
+    {
+        img: ZamboerHillsCafeResto3,
+        title: "Zamboer Hills Café & Resto 3",
+        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
+    }, 
+    {
+        img: ZamboerHillsCafeResto4,
+        title: "Zamboer Hills Café & Resto 4",
+        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
+    }
+]
+---
+
+<section class="box-border px-45">
+    <header class="text-left mb-10">
+        <h3 class="text-accent">Aslan Project / Our Projects</h3>
+        <h1 class="text-text-primary text-section font-bold mb-2">
+            ALL PROJECTS
+        </h1>
+
+        <p class="text-xs">Explore our selected architectural projects.</p>
+    </header>
+    
+    <main class="mb-32">
+        <section class="grid grid-cols-2 gap-10">
+            {items.map(({ img, title, location }) => (
+                <div class="grid grid-rows-[1fr_auto]">
+                    <Image src={img} alt={title} class="w-full h-full object-cover rounded-lg border-accent border" />
+                    <p class="mt-6 mb-2 font-sans text-text-primary text-xl font-semibold">{title}</p>
+                    <p class="text-text-secondary text-xs">{location}</p>
+                </div>
+            ))}
+        </section>
+    </main>
+</section>
