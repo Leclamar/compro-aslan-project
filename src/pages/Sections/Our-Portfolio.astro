@@ -1,89 +1,89 @@
 ---
 import {Image} from "astro:assets";
 
-import AquaInformationBoothDesign from "../../assets/portfolio/Aqua Information Booth Design.jpg";
-import BillyardClubDesign from "../../assets/portfolio/Billyard Club Design.jpg";
-import MrTeukuHouseDesign from "../../assets/portfolio/Mr. Teuku House Design.png";
-import FestivalEventVenueDesign from "../../assets/portfolio/Festival Event Venue Design.jpg";
-import KALaundryInteriorDesignBuild from "../../assets/portfolio/KA Laundry Interior Design & Build.jpg";
-import KedaiAsikInteriorDesignBuild from "../../assets/portfolio/Kedai Asik Interior Design & Build.jpg";
-import KopikiranCoffeeEateryInteriorDesignBuild from "../../assets/portfolio/Kopikiran Coffee & Eatery Interior Design & Build.png";
-import MasjidAnNaafi from "../../assets/portfolio/Masjid An-Naafi’ Design & Build.jpg";
-import MrErikHouseDesign from "../../assets/portfolio/Mr. Erik House Design.jpg";
-import MrHaikalHouseDesign from "../../assets/portfolio/Mr. Haikal House Design.png";
-import MrNovanHouseDesign from "../../assets/portfolio/Mr. Novan House Design.jpg";
-import MsAsniHouseDesign from "../../assets/portfolio/Ms. Asni House Design & Build.jpg";
-import MsLinaHouseDesign from "../../assets/portfolio/Ms. Lina House Design & Build.jpg";
-import MsYuniHouseDesign from "../../assets/portfolio/Ms. Yuni House Design.jpg";
-import TheBreezeCafeRestoDesign from "../../assets/portfolio/The Breeze Café & Resto Design.jpg";
-import TYATeknikDesign from "../../assets/portfolio/TYA Teknik Design.jpg";
+const modules = import.meta.glob<{ default: ImageMetadata }>(
+    "../../assets/portfolio/*.{jpg,jpeg,png,webp}",
+    { eager: true }
+);
+
+const gallery: Record<string, ImageMetadata[]> = {};
+Object.entries(modules)
+    .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+    .forEach(([path, mod]) => {
+        const file = path.split("/").pop()!.replace(/\.[^.]+$/, "");
+        const key = file.replace(/\s*\d+$/, "").trim().normalize("NFC");
+        (gallery[key] ??= []).push(mod.default);
+    });
 
 const items =[
     {
-        img : AquaInformationBoothDesign,
+        key : "Aqua Information Booth Design",
         title : "Aqua Information Booth Design",
     },
     {
-        img : BillyardClubDesign,
+        key : "Billyard Club Design",
         title : "Billyard Club Design"
     },
     {
-        img : MrTeukuHouseDesign,
+        key : "Mr. Teuku House Design",
         title : "Mr. Teuku House Design"
     },
     {
-        img : FestivalEventVenueDesign,
+        key : "Festival Event Venue Design",
         title : "Festival Event Venue Design"
     },
     {
-        img : KALaundryInteriorDesignBuild,
+        key : "KA Laundry Interior Design & Build",
         title : "KA Laundry Interior Design & Build"
     },
     {
-        img : KedaiAsikInteriorDesignBuild,
+        key : "Kedai Asik Interior Design & Build",
         title : "Kedai Asik Interior Design & Build"
     },
     {
-        img : KopikiranCoffeeEateryInteriorDesignBuild,
+        key : "Kopikiran Coffee & Eatery Interior Design & Build",
         title : "Kopikiran Coffee & Eatery Interior Design & Build"
     },
     {
-        img : MasjidAnNaafi,
+        key : "Masjid An-Naafi’ Design & Build",
         title : "Masjid An-Naafi’ Design & Build"
     },
     {
-        img : MrErikHouseDesign,
+        key : "Mr. Erik House Design",
         title : "Mr. Erik House Design"
     },
     {
-        img : MrHaikalHouseDesign,
+        key : "Mr. Haikal House Design",
         title : "Mr. Haikal House Design"
     },
     {
-        img : MrNovanHouseDesign,
+        key : "Mr. Novan House Design",
         title : "Mr. Novan House Design"
     },
     {
-        img : MsAsniHouseDesign,
-        title : "Ms. Asni House Design"
+        key : "Ms. Asni House Design & Build",
+        title : "Ms. Asni House Design & Build"
     },
     {
-        img : MsLinaHouseDesign,
-        title : "Ms. Lina House Design"
+        key : "Ms. Lina House Design & Build",
+        title : "Ms. Lina House Design & Build"
     },
     {
-        img : MsYuniHouseDesign,
+        key : "Ms. Yuni House Design",
         title : "Ms. Yuni House Design"
     },
     {
-        img : TheBreezeCafeRestoDesign,
+        key : "The Breeze Café & Resto Design",
         title : "The Breeze Café & Resto Design"
     },
     {
-        img : TYATeknikDesign,
+        key : "TYA Teknik Design",
         title : "TYA Teknik Design"
     }
-]
+].map((item) => ({
+    ...item,
+    images: gallery[item.key.normalize("NFC")] ?? []
+}));
 ---
 
 <section>
@@ -97,9 +97,9 @@ const items =[
     
     <main class="px-45 mb-32">
         <section class="grid grid-cols-2 gap-10">
-            {items.map(({ img, title }) => (
+            {items.map(({ images, title }) => (
                 <div class="grid grid-rows-[1fr_auto] gap-4">
-                    <Image src={img} alt={title} class="w-full h-full object-cover rounded-lg border-accent border" />
+                    <Image src={images[0]} alt={title} class="w-full h-full object-cover rounded-lg border-accent border" />
                     <h2 class="text-text-primary text-lg font-semibold">{title}</h2>
                 </div>
             ))}

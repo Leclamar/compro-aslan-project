@@ -1,103 +1,153 @@
 ---
 import {Image} from "astro:assets";
 
-import KafkaHouse1 from "../../assets/projects/Kafka House 1.jpg";
-import KedaiAsik from "../../assets/projects/Kedai Asiiik.png";
-import KopikiranCoffeeEatery from "../../assets/projects/Kopikiran Coffee & Eatery 1.jpg";
-import MasjidAnNaafi from "../../assets/projects/Masjid An-Naafi’.jpg";
-import MsAsniHouse1 from "../../assets/projects/Ms. Asni House 1.jpg";
-import MsLinaHouse1 from "../../assets/projects/Ms. Lina House 1.png";
-import MsLinaHouse2 from "../../assets/projects/Ms. Lina House 2.jpg";
-import WaroengPintoAtjeh from "../../assets/projects/Waroeng Pinto Atjeh 1.jpg";
-import ZamboerHillsCafeResto1 from "../../assets/projects/Zamboer Hills Café & Resto 1.jpg";
-import ZamboerHillsCafeResto2 from "../../assets/projects/Zamboer Hills Café & Resto 2.jpg";
-import ZamboerHillsCafeResto3 from "../../assets/projects/Zamboer Hills Café & Resto 3.jpg";
-import ZamboerHillsCafeResto4 from "../../assets/projects/Zamboer Hills Café & Resto 4.jpg";
+// Ambil semua gambar di folder, lalu kelompokkan berdasarkan nama (tanpa angka di belakang)
+const modules = import.meta.glob<{ default: ImageMetadata }>(
+    "../../assets/projects/*.{jpg,jpeg,png,webp}",
+    { eager: true }
+);
 
+const gallery: Record<string, ImageMetadata[]> = {};
+Object.entries(modules)
+    .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+    .forEach(([path, mod]) => {
+        const file = path.split("/").pop()!.replace(/\.[^.]+$/, "");
+        const key = file.replace(/\s*\d+$/, "").trim().normalize("NFC");
+        (gallery[key] ??= []).push(mod.default);
+    });
 
+// key = nama file TANPA angka & ekstensi
 const items = [
     {
-        img: KafkaHouse1,
-        title: "Kafka House 1",
-        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
-    }, 
+        key: "Kafka House",
+        title: "Kafka House",
+        location: "KPAD Cijantung 2 . 2021 . East Jakarta",
+        description: "Kafka House is a residential project."
+    },
     {
-        img: KedaiAsik,
+        key: "Kedai Asiiik",
         title: "Kedai Asik",
-        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
-    }, 
+        location: "Cibubur . 2022 . West Java",
+        description: "A food and beverage project."
+    },
     {
-        img: KopikiranCoffeeEatery,
+        key: "Kopikiran Coffee & Eatery",
         title: "Kopikiran Coffee & Eatery",
-        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
-    }, 
+        location: "Cibubur . 2025 . West Java",
+        description: "A cozy café and restaurant project."
+    },
     {
-        img: MasjidAnNaafi,
+        key: "Masjid An-Naafi’",
         title: "Masjid An-Naafi’",
-        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
-    }, 
+        location: "Grand Depok City . 2023 - 2024 . West Java",
+        description: "A mosque project."
+    },
     {
-        img: MsAsniHouse1,
-        title: "Ms. Asni House 1",
-        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
-    }, 
+        key: "Ms. Asni House",
+        title: "Ms. Asni House",
+        location: "Depok . 2025 . West Java",
+        description: "This House is a residential project."
+    },
     {
-        img: MsLinaHouse1,
-        title: "Ms. Lina House 1",
-        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
-    }, 
+        key: "Ms. Lina House",
+        title: "Ms. Lina House",
+        location: "Cicurug - Sukabumi . 2026 . West Java",
+        description: "This House is a residential project."
+    },
     {
-        img: MsLinaHouse2,
-        title: "Ms. Lina House 2",
-        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
-    }, 
-    {
-        img: WaroengPintoAtjeh,
+        key: "Waroeng Pinto Atjeh",
         title: "Waroeng Pinto Atjeh",
-        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
-    }, 
+        location: "Cipinang . 2024 . East Jakarta",
+        description: "A traditional restaurant project."
+    },
     {
-        img: ZamboerHillsCafeResto1,
-        title: "Zamboer Hills Café & Resto 1",
-        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
-    }, 
-    {
-        img: ZamboerHillsCafeResto2,
-        title: "Zamboer Hills Café & Resto 2",
-        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
-    }, 
-    {
-        img: ZamboerHillsCafeResto3,
-        title: "Zamboer Hills Café & Resto 3",
-        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
-    }, 
-    {
-        img: ZamboerHillsCafeResto4,
-        title: "Zamboer Hills Café & Resto 4",
-        location: "KPAD Cijantung 2 . 2021 . East Jakarta"
+        key: "Zamboer Hills Café & Resto",
+        title: "Zamboer Hills Café & Resto",
+        location: "Sentul . 2019 . West Java",
+        description: "A cozy café and restaurant project."
     }
-]
+].map((item) => ({
+    ...item,
+    images: gallery[item.key.normalize("NFC")] ?? []
+}));
 ---
 
-<section class="box-border px-45">
+<section id="projects" class="box-border px-6 md:px-45">
     <header class="text-left mb-10">
-        <h3 class="text-accent">Aslan Project / Our Projects</h3>
-        <h1 class="text-text-primary text-section font-bold mb-2">
-            ALL PROJECTS
-        </h1>
-
+        <p class="text-accent">Aslan Project / Our Projects</p>
+        <h1 class="text-text-primary text-section font-bold mb-2">ALL PROJECTS</h1>
         <p class="text-xs">Explore our selected architectural projects.</p>
     </header>
-    
+
     <main class="mb-32">
-        <section class="grid grid-cols-2 gap-10">
-            {items.map(({ img, title, location }) => (
-                <div class="grid grid-rows-[1fr_auto]">
-                    <Image src={img} alt={title} class="w-full h-full object-cover rounded-lg border-accent border" />
-                    <p class="mt-6 mb-2 font-sans text-text-primary text-xl font-semibold">{title}</p>
-                    <p class="text-text-secondary text-xs">{location}</p>
-                </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {items.map(({ images, title, location }, i) => (
+                <button
+                    type="button"
+                    data-open={`project-${i}`}
+                    class="group flex flex-col text-left cursor-pointer"
+                >
+                    <div class="aspect-[16/10] overflow-hidden rounded-lg border border-accent">
+                        <Image
+                            src={images[0]}
+                            alt={title}
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                    </div>
+                    <span class="mt-6 mb-2 font-sans text-text-primary text-xl font-semibold">{title}</span>
+                    <span class="text-text-secondary text-xs">{location}</span>
+                </button>
             ))}
-        </section>
+        </div>
     </main>
+
+    {items.map(({ images, title, location, description }, i) => (
+        <dialog
+            id={`project-${i}`}
+            class="project-dialog m-auto w-[min(1100px,92vw)] max-h-[90vh] overflow-y-auto rounded-xl border border-accent bg-[#111] p-0 text-text-primary backdrop:bg-black/80"
+        >
+            <div class="p-6 md:p-8">
+                <div class="flex items-start justify-between gap-4 mb-6">
+                    <div>
+                        <h2 class="text-2xl font-semibold">{title}</h2>
+                        <p class="text-text-secondary text-xs mt-1">{location}</p>
+                    </div>
+                    <button type="button" data-close aria-label="Tutup" class="text-3xl leading-none cursor-pointer">&times;</button>
+                </div>
+
+                <p class="text-sm text-text-secondary mb-8">{description}</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {images.map((img, n) => (
+                        <Image
+                            src={img}
+                            alt={`${title} ${n + 1}`}
+                            class="w-full h-full object-cover rounded-lg"
+                        />
+                    ))}
+                </div>
+            </div>
+        </dialog>
+    ))}
 </section>
+
+<script>
+    document.querySelectorAll<HTMLElement>("[data-open]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const dlg = document.getElementById(btn.dataset.open!) as HTMLDialogElement;
+            dlg.showModal();
+            document.body.style.overflow = "hidden";
+        });
+    });
+
+    document.querySelectorAll<HTMLDialogElement>("dialog.project-dialog").forEach((dlg) => {
+        dlg.addEventListener("click", (e) => {
+            const t = e.target as HTMLElement;
+            // klik area gelap di luar konten, atau tombol ×
+            if (t === dlg || t.closest("[data-close]")) dlg.close();
+        });
+        dlg.addEventListener("close", () => {
+            document.body.style.overflow = "";
+        });
+    });
+</script>
