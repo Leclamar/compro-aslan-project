@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import ListContent from '../../components/list-content.astro';
+import visionImage from "../../assets/about/vision.jpg";
 
 const items = [
     {
@@ -50,6 +52,11 @@ const items = [
         </div>
     </article>
 
-    <div class="bg-red-600 w-full h-full">
+    <div class="w-full h-full">
+        <Image
+            src={visionImage}
+            alt="Vision"
+            class="w-full h-screen object-cover"
+        />
     </div>
 </section>
